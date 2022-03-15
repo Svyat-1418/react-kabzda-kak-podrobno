@@ -1,54 +1,52 @@
-import React from "react";
+import React, {useState} from "react";
 
-type PropsType = {
-    isOn: boolean
-}
-type SquarePropsType = {
-    color: string
-    title: string
-}
-type IndicatorPropsType = {
-    color: string
-}
 
-function OnOff(props: PropsType) {
+function OnOff() {
+    console.log("OnOff rendering")
+    const [on, setOn] = useState<boolean>(false)
+    console.log("on: " + on)
+
+    const styleOn = {
+        "display": "flex",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "width": "50px",
+        "height": "50px",
+        "border": "3px solid black",
+        "fontSize": "1.3rem",
+        "fontWeight": "bolder",
+        backgroundColor: `${on ? "green" : "white"}`,
+    }
+    const styleOff = {
+        marginLeft: "3px",
+        "display": "flex",
+        "justifyContent": "center",
+        "alignItems": "center",
+        "width": "50px",
+        "height": "50px",
+        "border": "3px solid black",
+        "fontSize": "1.3rem",
+        "fontWeight": "bolder",
+        backgroundColor: `${!on ? "red" : "white"}`,
+    }
+    const styleCircle = {
+        marginLeft: "5px",
+        "width": "50px",
+        "height": "50px",
+        "border": "3px solid black",
+        "borderRadius": "50%",
+        "background": `${on ? "green" : "red"}`
+    }
+
     return (
         <div style={{"display": "flex"}}>
-            <Square color={(props.isOn && "green") || "black"} title={"ON"}/>
-            <Square color={(!props.isOn && "red") || "black"} title={"OFF"}/>
+            <div style={styleOn} onClick={() => setOn(true)}>On</div>
+            <div style={styleOff} onClick={() => setOn(false)}>Off</div>
 
-            <Indicator color={(props.isOn && "green") || "red"}/>
+            <div style={styleCircle}>.</div>
         </div>
     )
 }
 
-
-function Square(props: SquarePropsType) {
-    return (
-        <div style={{
-            "display": "flex",
-            "justifyContent": "center",
-            "alignItems": "center",
-            "width": "50px",
-            "height": "50px",
-            "border": "3px solid black",
-            "fontSize": "1.3rem",
-            "fontWeight": "bolder",
-            "color": `${props.color}`
-        }}>{props.title}</div>
-    )
-}
-
-function Indicator(props: IndicatorPropsType) {
-    return (
-        <div style={{
-            "width": "50px",
-            "height": "50px",
-            "border": "3px solid black",
-            "borderRadius": "50%",
-            "background": `${props.color}`
-        }}>.</div>
-    )
-}
 
 export default OnOff
