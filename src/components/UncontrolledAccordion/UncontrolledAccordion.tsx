@@ -5,17 +5,27 @@ type UncontrolledAccordionPropsType = {
 }
 type UncontrolledAccordionTitlePropsType = {
     title: string
+    collapsed: boolean
+    changeCollapsed: (newValue: boolean) => void
 }
 
 function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
     console.log("UncontrolledAccordion rendering")
     const [collapsed, setCollapsed] = useState<boolean>(false)
 
+    const changeCollapsed = (newValue: boolean) => {
+        setCollapsed(newValue)
+    }
+    
     return (
         <div>
-            <UncontrolledAccordionTitle title={props.titleValue}/>
+            <UncontrolledAccordionTitle
+                title={props.titleValue}
+                changeCollapsed={changeCollapsed}
+                collapsed={collapsed}
+            />
             {!collapsed && <UncontrolledAccordionBody/>}
-            <button onClick={() => setCollapsed(!collapsed)}>Toggle</button>
+            {/*<button onClick={() => setCollapsed(!collapsed)}>Toggle</button>*/}
         </div>
     )
 }
@@ -23,8 +33,12 @@ function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
 
 function UncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
     console.log("UncontrolledAccordionTitle rendering")
+    const onClickHandler = () => {
+        props.changeCollapsed(!props.collapsed)
+    }
+    
     return (
-        <h3>{props.title}</h3>
+        <h3 onClick={onClickHandler}>{props.title}</h3>
     )
 }
 
