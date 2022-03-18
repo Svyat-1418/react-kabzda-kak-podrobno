@@ -3,38 +3,34 @@ import React, {useState} from "react";
 type UncontrolledAccordionPropsType = {
     titleValue: string
 }
-type UncontrolledAccordionTitlePropsType = {
+type AccordionTitlePropsType = {
     title: string
-    collapsed: boolean
-    changeCollapsed: (newValue: boolean) => void
+    accordionCollapsed: boolean
+    setAccordionCollapsed: (newValue: boolean) => void
 }
 
 function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
     console.log("UncontrolledAccordion rendering")
-    const [collapsed, setCollapsed] = useState<boolean>(false)
+    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
 
-    const changeCollapsed = (newValue: boolean) => {
-        setCollapsed(newValue)
-    }
     
     return (
         <div>
-            <UncontrolledAccordionTitle
+            <AccordionTitle
                 title={props.titleValue}
-                changeCollapsed={changeCollapsed}
-                collapsed={collapsed}
+                setAccordionCollapsed={setAccordionCollapsed}
+                accordionCollapsed={accordionCollapsed}
             />
-            {!collapsed && <UncontrolledAccordionBody/>}
-            {/*<button onClick={() => setCollapsed(!collapsed)}>Toggle</button>*/}
+            {!accordionCollapsed && <AccordionBody/>}
         </div>
     )
 }
 
 
-function UncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
-    console.log("UncontrolledAccordionTitle rendering")
+function AccordionTitle(props: AccordionTitlePropsType) {
+    console.log("AccordionTitle rendering")
     const onClickHandler = () => {
-        props.changeCollapsed(!props.collapsed)
+        props.setAccordionCollapsed(!props.accordionCollapsed)
     }
     
     return (
@@ -42,8 +38,8 @@ function UncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) 
     )
 }
 
-function UncontrolledAccordionBody() {
-    console.log("UncontrolledAccordionBody rendering")
+function AccordionBody() {
+    console.log("AccordionBody rendering")
     return (
         <ul>
             <li>1</li>
