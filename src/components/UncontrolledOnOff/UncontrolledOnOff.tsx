@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
-function OnOff(props:{switchOn: boolean, setSwitchOn: (switchOn: boolean) => void}) {
-    console.log("OnOff rendering")
+
+function UncontrolledOnOff() {
+    console.log("UncontrolledOnOff rendering")
+    const [on, setOn] = useState<boolean>(false)
+    console.log("on: " + on)
 
     const styleOn = {
         "display": "flex",
@@ -12,7 +15,7 @@ function OnOff(props:{switchOn: boolean, setSwitchOn: (switchOn: boolean) => voi
         "border": "3px solid black",
         "fontSize": "1.3rem",
         "fontWeight": "bolder",
-        backgroundColor: `${props.switchOn ? "green" : "white"}`,
+        backgroundColor: `${on ? "green" : "white"}`,
     }
     const styleOff = {
         marginLeft: "3px",
@@ -24,7 +27,7 @@ function OnOff(props:{switchOn: boolean, setSwitchOn: (switchOn: boolean) => voi
         "border": "3px solid black",
         "fontSize": "1.3rem",
         "fontWeight": "bolder",
-        backgroundColor: `${!props.switchOn ? "red" : "white"}`,
+        backgroundColor: `${!on ? "red" : "white"}`,
     }
     const styleCircle = {
         marginLeft: "5px",
@@ -32,13 +35,13 @@ function OnOff(props:{switchOn: boolean, setSwitchOn: (switchOn: boolean) => voi
         "height": "50px",
         "border": "3px solid black",
         "borderRadius": "50%",
-        "background": `${props.switchOn ? "green" : "red"}`
+        "background": `${on ? "green" : "red"}`
     }
 
     return (
         <div style={{"display": "flex"}}>
-            <div style={styleOn} onClick={() => props.setSwitchOn(true)}>On</div>
-            <div style={styleOff} onClick={() => props.setSwitchOn(false)}>Off</div>
+            <div style={styleOn} onClick={() => setOn(true)}>On</div>
+            <div style={styleOff} onClick={() => setOn(false)}>Off</div>
 
             <div style={styleCircle}>.</div>
         </div>
@@ -46,4 +49,4 @@ function OnOff(props:{switchOn: boolean, setSwitchOn: (switchOn: boolean) => voi
 }
 
 
-export default OnOff
+export default UncontrolledOnOff
