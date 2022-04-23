@@ -1,6 +1,6 @@
 import React from "react";
 
-function OnOff(props:{switchOn: boolean, setSwitchOn: (switchOn: boolean) => void}) {
+export function OnOff(props:{switchOn: boolean, setSwitchOn: (switchOn: boolean) => void}) {
     console.log("OnOff rendering")
 
     const styleOn = {
@@ -44,6 +44,3 @@ function OnOff(props:{switchOn: boolean, setSwitchOn: (switchOn: boolean) => voi
         </div>
     )
 }
-
-
-export default OnOff
