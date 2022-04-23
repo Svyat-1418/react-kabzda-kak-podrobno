@@ -3,9 +3,9 @@ import './App.css';
 import {Accordion} from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 import {OnOff} from "./components/OnOff/OnOff";
-import UncontrolledAccordion from "./components/UncontrolledAccordion/UncontrolledAccordion";
-import UncontrolledRating from "./components/UncontrolledRating/UncontrolledRating";
-import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
+import {UncontrolledAccordion} from "./components/UncontrolledAccordion/UncontrolledAccordion";
+import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
+import {UncontrolledOnOff}from "./components/UncontrolledOnOff/UncontrolledOnOff";
 
 type PageTitlePropsType = {
     title: string
@@ -40,10 +40,10 @@ function App() {
             />
 
             <Rating ratingValue={ratingValue} setRatingValue={setRatingValue}/>
-            <UncontrolledRating />
+            <UncontrolledRating defaultValue={1} getLocalStateValue={(ratingValue: RatingValueType) => {}} />
 
             <OnOff switchOn={switchOn} setSwitchOn={setSwitchOn}/>
-            <UncontrolledOnOff />
+            <UncontrolledOnOff defaultValue={true}/>
         </div>
     );
 }

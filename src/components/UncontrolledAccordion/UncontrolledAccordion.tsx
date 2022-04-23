@@ -9,11 +9,11 @@ type AccordionTitlePropsType = {
     setAccordionCollapsed: (newValue: boolean) => void
 }
 
-function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
+export function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
     console.log("UncontrolledAccordion rendering")
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
 
-    
+
     return (
         <div>
             <AccordionTitle
@@ -32,7 +32,7 @@ function AccordionTitle(props: AccordionTitlePropsType) {
     const onClickHandler = () => {
         props.setAccordionCollapsed(!props.accordionCollapsed)
     }
-    
+
     return (
         <h3 onClick={onClickHandler}>{props.title}</h3>
     )
@@ -49,4 +49,3 @@ function AccordionBody() {
     )
 }
 
-export default UncontrolledAccordion
