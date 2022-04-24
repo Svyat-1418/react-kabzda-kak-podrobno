@@ -29,7 +29,6 @@ export const TrackValueOfUncontrolledInput = () => {
         <input onChange={onChangeHandler}/> - actualValue: {inputValue}
     </>
 }
-
 export const GetValueOfUncontrolledInputByButtonPress = () => {
     const [inputValue, setInputValue] = useState("")
     const inputRef = useRef<HTMLInputElement>(null)
@@ -46,4 +45,35 @@ export const GetValueOfUncontrolledInputByButtonPress = () => {
         />
         <button onClick={onClickHandler}>Save</button> - actualValue: {inputValue}
     </>
+}
+
+export const ControlledInput = () => {
+    const [parentValue, setParentValue] = useState("")
+    
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setParentValue(e.currentTarget.value)
+    }
+    return <input value={parentValue} onChange={onChangeHandler} />
+}
+export const ControlledCheckbox = () => {
+    const [parentValue, setParentValue] = useState(true)
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setParentValue(e.currentTarget.checked)
+    }
+    return <input type={"checkbox"} checked={parentValue} onChange={onChangeHandler} />
+}
+export const ControlledSelect = () => {
+    const [parentValue, setParentValue] = useState("")
+
+    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        setParentValue(e.currentTarget.value)
+    }
+    return <select value={parentValue} onChange={onChangeHandler} >
+        <option>Choose city</option>
+        <option>Minsk</option>
+        <option>Russia</option>
+        <option>Kiev</option>
+        <option>London</option>
+    </select>
 }
