@@ -36,17 +36,17 @@ WithoutValue.args = {
 export const Changeable = () => {
     const [value, setValue] = useState("2")
 
-  return (
-      <Select value={value}
-              onChangeItem={setValue}
-              items={
-                  [
-                      {value: "1", title: "Coca Cola"},
-                      {value: "2", title: "Sprite"},
-                      {value: "3", title: "Fanta"},
-                  ]
+    return (
+        <Select value={value}
+                onChangeItem={setValue}
+                items={
+                    [
+                        {value: "1", title: "Coca Cola"},
+                        {value: "2", title: "Sprite"},
+                        {value: "3", title: "Fanta"},
+                    ]
 
-              }
-      />
-  )
+                }
+        />
+    )
 }
