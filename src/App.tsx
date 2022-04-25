@@ -18,7 +18,13 @@ function App() {
     const [ratingValue, setRatingValue] = useState<RatingValueType>(0)
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
     const [switchOn, setSwitchOn] = useState<boolean>(false)
-    
+
+    const items = [
+        {title: "Svyat", value: "1"},
+        {title: "Igor", value: "2"},
+        {title: "Viktor", value: "3"},
+        {title: "Sveta", value: "4"}]
+
     return (
         <div className="App">
             {/*<PageTitle title={"This is App component"}/>
@@ -33,10 +39,14 @@ function App() {
             <Accordion titleValue={"Menu 1"}
                        accordionCollapsed={accordionCollapsed}
                        setAccordionCollapsed={setAccordionCollapsed}
+                       items={items}
+                       onClick={(value) => alert(`User with ID ${value} should be HAPPY!!! `)}
             />
             <Accordion titleValue={"Menu 2"}
                        accordionCollapsed={accordionCollapsed}
                        setAccordionCollapsed={() => setAccordionCollapsed}
+                       items={items}
+                       onClick={(value) => alert(`User with ID ${value} should be HAPPY!!! `)}
             />
 
             <Rating ratingValue={ratingValue} setRatingValue={setRatingValue}/>

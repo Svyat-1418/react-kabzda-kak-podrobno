@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {ComponentStory, ComponentMeta} from '@storybook/react';
 
 import {Accordion} from "./Accordion"
 import {action} from "@storybook/addon-actions";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Controlled Components/Accordion',
-  component: Accordion,
+    title: 'Controlled Components/Accordion',
+    component: Accordion,
 
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // },
+    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+    // argTypes: {
+    //   backgroundColor: { control: 'color' },
+    // },
 
 } as ComponentMeta<typeof Accordion>;
 
@@ -23,29 +23,47 @@ const callback = action("Accordion want to collapse or uncollapse")
 export const CollapsedAccordion = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 CollapsedAccordion.args = {
-  titleValue: "CollapsedAccordion",
-  accordionCollapsed: true,
-  setAccordionCollapsed: callback
+    titleValue: "CollapsedAccordion",
+    accordionCollapsed: true,
+    setAccordionCollapsed: callback,
+    items: [
+        {title: "Svyat", value: "1"},
+        {title: "Igor", value: "2"},
+        {title: "Viktor", value: "3"},
+        {title: "Sveta", value: "4"}],
+    onClick: (value) => alert(`User with ID ${value} should be HAPPY!!! `)
 };
 
 export const UncollapsedAccordion = Template.bind({});
 UncollapsedAccordion.args = {
-  titleValue: "UncollapsedAccordion",
-  accordionCollapsed: false,
-  setAccordionCollapsed: callback
+    titleValue: "UncollapsedAccordion",
+    accordionCollapsed: false,
+    setAccordionCollapsed: callback,
+    items: [
+        {title: "Svyat", value: "1"},
+        {title: "Igor", value: "2"},
+        {title: "Viktor", value: "3"},
+        {title: "Sveta", value: "4"}],
+    onClick: (value) => alert(`User with ID ${value} should be HAPPY!!! `)
 };
 
 export const AccordionChanging = () => {
-  const [collapsed, setCollapsed] = useState(false)
-  const onClickHandler = () => {
-    setCollapsed(!collapsed)
-  }
+    const [collapsed, setCollapsed] = useState(false)
+    const onClickHandler = () => {
+        setCollapsed(!collapsed)
+    }
 
-  return <Accordion
-      titleValue={'UncollapsedAccordionByClick'}
-      accordionCollapsed={collapsed}
-    setAccordionCollapsed={onClickHandler}
-  />
+    return <Accordion
+        titleValue={'Uncollapsed Accordion By Click'}
+        accordionCollapsed={collapsed}
+        setAccordionCollapsed={onClickHandler}
+        onClick={(value) => alert(`User with ID ${value} should be HAPPY!!! `)}
+        items={[
+            {title: "Svyat", value: "1"},
+            {title: "Igor", value: "2"},
+            {title: "Viktor", value: "3"},
+            {title: "Sveta", value: "4"}]}
+    />
 }
 
 
