@@ -1,0 +1,15 @@
+.select .main{
+    border: 1px solid;
+    display: inline-block;
+    min-height: 20px;
+    min-width: 50px;
+}
+.items{
+    border: 1px solid brown;
+    padding: 5px;
+    position: absolute;
+}
+.item.selected{
+    background: rgba(164, 52, 167, 0.6);
+    color: whitesmoke;
+}
