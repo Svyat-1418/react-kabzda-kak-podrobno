@@ -1,5 +1,6 @@
 import React, {useEffect, useState, KeyboardEvent} from "react";
 import styles from "./Select.module.css"
+import {DrinkType} from "../../stories/MemoSelect.stories";
 
 type ItemType = {
   title: string
@@ -8,10 +9,11 @@ type ItemType = {
 type PropsType = {
   value: any
   onChangeItem: (value: any) => void
-  items: ItemType[]
+  items: ItemType[] | DrinkType[]
 }
 
 export const Select = (props: PropsType) => {
+  console.log(props.items)
   const [active, setActive] = useState(false)
   const [hoveredElementValue, setHoveredElementValue] = useState(props.value)
 
@@ -62,7 +64,7 @@ export const Select = (props: PropsType) => {
 
         <div className={styles.select} onKeyUp={onKeyUpHandler} tabIndex={0}>
                 <span className={styles.main}
-                      onClick={toggleItems}>{selectedItem && selectedItem.title}</span>
+                      onClick={toggleItems}>{selectedItem ? selectedItem.title : props.items[0].title}</span>
           {active &&
               <div className={styles.items}>
                 {props.items.map(item =>
