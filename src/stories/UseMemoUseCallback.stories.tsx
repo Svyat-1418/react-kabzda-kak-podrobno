@@ -1,9 +1,9 @@
-import React, {ChangeEvent, useMemo, useState} from 'react';
+import React, {ChangeEvent, useCallback, useMemo, useState} from 'react';
 import { Select } from '../components/Select/Select';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'useMemo',
+    title: 'useMemo&useCallback',
 }
 
 export const DificultCounting = () => {
@@ -84,6 +84,44 @@ export const HelpsToReactMemo = () => {
 
             <NewMessagesCounterWithReactMemo count={count}/>
             <UsersWithReactMemo users={filteredUsersMemo} />
+        </>
+    )
+}
+
+const Books = (props: { books: Array<string>, addBook: () => void }) => {
+    console.log("Users rendering")
+
+    return <div>
+        <button onClick={() => props.addBook()}>Add Book</button>
+        {props.books.map((user, index) => <div key={index}>{user}</div>)}
+    </div>
+}
+const BooksWithReactMemo = React.memo(Books)
+export const LikeUseCallback = () => {
+    console.log("LikeUseCallback rendering")
+    const [books, setBooks] = useState<Array<string>>(["Wedzmin", "Harry Potter", "Clean code", "Learn JS"])
+    const [count, setCount] = useState(0)
+
+    const onClickCountHandler = () => {
+        setCount(count + 1)
+    }
+
+    const memoizedAddBook = useMemo(() => {
+        return () => {
+            console.log(books)
+            setBooks([...books, "Some book"])
+        }
+    }, [books])
+    const memoizedAddBook2 = useCallback(() => {
+        setBooks([...books, "Some book"])
+    }, [books])
+
+    return (
+        <>
+            <button onClick={onClickCountHandler}>+</button>
+
+            <NewMessagesCounterWithReactMemo count={count}/>
+            <BooksWithReactMemo books={books} addBook={memoizedAddBook2} />
         </>
     )
 }
