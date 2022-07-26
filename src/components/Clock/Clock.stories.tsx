@@ -9,10 +9,26 @@ export default {
     component: Clock
 } as ComponentMeta<typeof Clock>;
 
-export const ClockBaseExample = () => {
+export const DefaultClock = () => {
     return (
         <>
             <Clock/>
+        </>
+    )
+}
+
+export const AnalogClock = () => {
+    return (
+        <>
+            <Clock mode={"analog"}/>
+        </>
+    )
+}
+
+export const DigitalClock = () => {
+    return (
+        <>
+            <Clock mode={"digital"}/>
         </>
     )
 }
